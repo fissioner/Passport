@@ -1,4 +1,4 @@
-##Happy Calc
+#Happy Calc#
 
 A community for building calculators.
 
