@@ -1,4 +1,5 @@
 const passport = require('passport'),
+bcrypt = require('bcrypt'),
     GoogleStrategy = require('passport-google-oauth20'),
     FacebookStrategy = require('passport-facebook'),
     InstagramStrategy = require('passport-instagram'),
@@ -168,12 +169,15 @@ passport.use('registerUser', new LocalStrategy(
 ));
 
 passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        if (user.password != password) { return done(null, false); }
-        return done(null, user);
-      });
+    function (username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            bcrypt.compare(password, user.passwordHash, (req, res) => {
+                if (!res) { return done(null, false); }
+                return done(null, user);
+            });
+
+        });
     }
-  ));
+));
