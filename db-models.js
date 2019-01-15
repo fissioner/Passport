@@ -11,7 +11,8 @@ const userSchema = new Schema({
     linkedInId: String,
     thumbnail: String,
     passwordHash: String,
-    email: String
+    email: String,
+    timestamp: { type: Date, default: Date.now}
 });
 
 userSchema.methods.validPassword = function(password) {
