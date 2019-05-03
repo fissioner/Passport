@@ -6,7 +6,7 @@ const isAuthorized = (req, res, next) => {
 };
 
 router.get('/', isAuthorized, (req, res) => {
-    res.send(`<img src='${req.user.thumbnail?req.user.thumbnail:''}'/>
+    res.send(`<img src='${req.user.thumbnail?req.user.thumbnail:''}' style='width: 100px' />
     \n<h1>Welcome ${req.user.username}</h1>\n\n
     <a href='http://localhost:3000/auth/logout'>Logout</a>`);
 });

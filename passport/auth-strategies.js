@@ -157,7 +157,7 @@ passport.use('registerUser', new LocalStrategy(
                     username: username,
                     password: password,
                     email: req.body.email,
-                    thumbnail: 'https://cdn.mamamia.com.au/wp/wp-content/uploads/2015/01/fbookprofile_featured.png'
+                    thumbnail: `http://localhost:3000/img/profile${Math.ceil(Math.random(10)*9)}.png`
                 }).save().then(newUser => {
                     console.log('New user created: ' + newUser);
                     done(null, newUser);
