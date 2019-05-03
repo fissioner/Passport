@@ -1,5 +1,3 @@
-# Happy Calc #
+# Passport #
 
-A community for building calculators.
-
-**No license**
+Validation and authorization using Passport.js
